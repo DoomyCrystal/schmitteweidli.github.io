@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="css/angebot.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <script src="https://use.fontawesome.com/1488ac872c.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js?ver=4.9.1"></script>
+    <title>Kräuterei Schmitteweidli</title>
+</head>
+
+<body>
+    <section id="kopfzeile">
+        <a href="index.html"><img src="img/logo.png"></a>
+    </section>
+
+    <section id="menu">
+        <nav>
+            <div class="navigation">
+                <a href="index.html">Start</a>
+                <a class="nav-aktiv" href="#">Angebot</a>
+                <a href="tiere.html#menu">Tiere</a>
+                <a href="galerie.html#menu">Galerie</a>
+                <a href="ueber-uns.html#menu">Über uns</a>
+            </div>
+        </nav>
+        <div class="gitter-container">
+            <div class="zelle-1">
+                <div class="verlauf"></div>
+                <a href="#start">
+                    <h1>Entdecken Sie die Vielfalt <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h1>
+                </a>
+            </div>
+            <div class="zelle-2">
+                <div class="verlauf"></div>
+                <a href="#">
+                    <h1>Fleischprodukte</h1>
+                </a>
+            </div>
+            <div class="zelle-3">
+                <div class="verlauf"></div>
+                <a href="#">
+                    <h1>Liköre</h1>
+                </a>
+            </div>
+
+            <div class="zelle-4">
+                <div class="verlauf"></div>
+                <a href="#">
+                    <h1>Honig</h1>
+                </a>
+            </div>
+            <div class="zelle-5">
+                <div class="verlauf"></div>
+                <a href="#">
+                    <h1>Kräuter</h1>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main style="height: 100vh;">
+        <div id="start"><p>Hier kommen die Produkte hin.</p></div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© Andi und Christa Müller-Haas 2018</p>
+            <ul>
+                <li><a href="#">Impressum</a></li>
+                <li><a href="#">Anfahrt</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000, function() {
+                                // Callback after animation
+                                // Must change focus!
+                                var $target = $(target);
+                                $target.focus();
+                                if ($target.is(":focus")) { // Checking if the target was focused
+                                    return false;
+                                } else {
+                                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                    $target.focus(); // Set focus again
+                                };
+                            });
+                        }
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
